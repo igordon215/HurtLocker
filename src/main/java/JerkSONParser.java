@@ -1,0 +1,28 @@
+// 1. PatternMatcher Class - pattern matching for food items to correct misspellings and variations.
+//
+// 1a. Main Class - read raw data from a file, parse the data, and print the parsed output.
+//
+// 2. JerkSONParser Class
+// Parsing the Raw Data -Split the raw input string into individual items.
+// Parsing Individual Items - extract key-value pairs from each item, handling various separators.
+//
+// 3. Handling Special Cases
+// Some items have the 'Type' and 'Expiration' fields combined with various separators.
+//
+// 4. Handling Missing Values
+// Some key-value pairs might have missing values.
+//
+// 5. Formatting Output
+// Format the parsed items into a readable string output.
+//
+// 6. Name Formatting and Pattern Matching
+// Correct misspellings or variations of food names.
+
+
+
+
+
+
+
+public class JerkSONParser {
+}
