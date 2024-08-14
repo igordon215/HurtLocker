@@ -10,7 +10,7 @@ public class PatternMatcher {
         foodPatterns.put("Milk", Pattern.compile("(?i)milk"));
         foodPatterns.put("Bread", Pattern.compile("(?i)bread"));
         foodPatterns.put("Apples", Pattern.compile("(?i)apples"));
-        foodPatterns.put("Cookies", Pattern.compile("(?i)co0?okies"));
+        foodPatterns.put("Cookies", Pattern.compile("(?i)c[o0]{2}kies"));
     }
 
     public static String findMatchingPattern(String input) {
