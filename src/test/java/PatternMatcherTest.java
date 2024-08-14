@@ -26,4 +26,14 @@ public class PatternMatcherTest {
         assertEquals("Apples", PatternMatcher.findMatchingPattern("apPles"));
     }
 
+    @Test
+    void testCookiesPatterns() {
+        assertEquals("Cookies", PatternMatcher.findMatchingPattern("Cookies"));
+        assertEquals("Cookies", PatternMatcher.findMatchingPattern("CoOkieS"));
+        assertEquals("Cookies", PatternMatcher.findMatchingPattern("COokIes"));
+        assertEquals("Cookies", PatternMatcher.findMatchingPattern("COOkieS"));
+        assertEquals("Cookies", PatternMatcher.findMatchingPattern("Co0kieS"));
+    }
+
+
 }
