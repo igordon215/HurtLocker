@@ -20,4 +20,10 @@ public class PatternMatcherTest {
         assertEquals("Bread", PatternMatcher.findMatchingPattern("BrEAD"));
     }
 
+    @Test
+    void testApplesPatterns() {
+        assertEquals("Apples", PatternMatcher.findMatchingPattern("Apples"));
+        assertEquals("Apples", PatternMatcher.findMatchingPattern("apPles"));
+    }
+
 }

@@ -9,6 +9,7 @@ public class PatternMatcher {
         foodPatterns = new HashMap<>();
         foodPatterns.put("Milk", Pattern.compile("(?i)milk"));
         foodPatterns.put("Bread", Pattern.compile("(?i)bread"));
+        foodPatterns.put("Apples", Pattern.compile("(?i)apples"));
     }
 
     public static String findMatchingPattern(String input) {
@@ -27,6 +28,7 @@ public class PatternMatcher {
         String[] testInputs = {
                 "Milk", "MilK", "MiLK",
                 "BreaD", "BrEAD",
+                "apPles",
 
         };
 
