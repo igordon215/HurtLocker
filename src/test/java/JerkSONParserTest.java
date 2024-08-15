@@ -1,25 +1,11 @@
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemFormatterTest {
-    @Test
-    public void testFormatItem() {
-        ItemFormatter formatter = new ItemFormatter();
-        Map<String, String> item = new HashMap<>();
-        item.put("name", "MiLk");
-        item.put("price", "3.23");
-        item.put("type", "Food");
+import static org.junit.jupiter.api.Assertions.*;
 
-        String result = formatter.formatItem(item);
-        assertTrue(result.contains("Name: Milk"));
-        assertTrue(result.contains("Price: 3.23"));
-        assertTrue(result.contains("Type: Food"));
-    }
-
+public class JerkSONParserTest {
     @Test
     public void formatItemWithEmptyMap() {
         ItemFormatter formatter = new ItemFormatter();
@@ -78,5 +64,37 @@ public class ItemFormatterTest {
         assertTrue(result.contains("Price: 3.23"));
         assertTrue(result.contains("Type: Food"));
     }
+
+    @Test
+    public void parseWithValidData() {
+        JerkSONParser parser = new JerkSONParser();
+        String rawData = "naMe:Milk;price:3.23;type:Food##naMe:Bread;price:1.23;type:Food";
+        String result = parser.parse(rawData);
+
+        assertTrue(result.contains("Name: Milk"));
+        assertTrue(result.contains("Price: 3.23"));
+        assertTrue(result.contains("Type: Food"));
+        assertTrue(result.contains("Name: Bread"));
+        assertTrue(result.contains("Price: 1.23"));
+        assertTrue(result.contains("Type: Food"));
+        assertEquals(0, parser.getExceptionCount());
+    }
+
+
+    @Test
+    public void parseWithSpecialCharacters() {
+        JerkSONParser parser = new JerkSONParser();
+        String rawData = "naMe:Milk@123;price:3.23$;type:Food##naMe:Bread#;price:1.23;type:Food";
+        String result = parser.parse(rawData);
+
+        assertTrue(result.contains("Name: Milk@123"));
+        assertTrue(result.contains("Price: 3.23$"));
+        assertTrue(result.contains("Type: Food"));
+        assertTrue(result.contains("Name: Bread#"));
+        assertTrue(result.contains("Price: 1.23"));
+        assertTrue(result.contains("Type: Food"));
+        assertEquals(0, parser.getExceptionCount());
+    }
+
 
 }

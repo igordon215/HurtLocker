@@ -25,18 +25,18 @@ public class PatternMatcher {
         return input;
     }
 
-    public static void main(String[] args) {
-        String[] testInputs = {
-                "Milk", "MilK", "MiLK",
-                "BreaD", "BrEAD",
-                "apPles",
-                "Cookies", "CoOkieS", "COokIes", "COOkieS", "Co0kieS",
-
-        };
-
-        for (String input : testInputs) {
-            String result = findMatchingPattern(input);
-            System.out.println("Input: " + input + " -> Matched: " + result);
-        }
-    }
+//    public static void main(String[] args) {
+//        String[] testInputs = {
+//                "MilK", "MiLK",
+//                "BreaD", "BrEAD",
+//                "apPles",
+//                "CoOkieS", "COokIes", "COOkieS", "Co0kieS",
+//
+//        };
+//
+//        for (String input : testInputs) {
+//            String result = findMatchingPattern(input);
+//            System.out.println("Input: " + input + " -> Matched: " + result);
+//        }
+//    }
 }

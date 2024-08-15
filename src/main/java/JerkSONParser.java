@@ -18,11 +18,31 @@
 // 6. Name Formatting and Pattern Matching
 // Correct misspellings or variations of food names.
 
-
-
-
-
-
+import java.util.Map;
 
 public class JerkSONParser {
+    private static final String ITEM_SEPARATOR = "##";
+    private ItemParser itemParser;
+    private ItemFormatter itemFormatter;
+    private ExceptionCounter exceptionCounter;
+
+    public JerkSONParser() {
+        this.exceptionCounter = new ExceptionCounter();
+        this.itemParser = new ItemParser(exceptionCounter);
+        this.itemFormatter = new ItemFormatter();
+    }
+
+    public String parse(String rawData) {
+        StringBuilder output = new StringBuilder();
+        String[] items = rawData.split(ITEM_SEPARATOR);
+        for (String item : items) {
+            Map<String, String> parsedItem = itemParser.parseItem(item);
+            output.append(itemFormatter.formatItem(parsedItem)).append("\n");
+        }
+        return output.toString();
+    }
+
+    public int getExceptionCount() {
+        return exceptionCounter.getExceptionCount();
+    }
 }

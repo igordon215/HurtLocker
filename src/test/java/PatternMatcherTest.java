@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PatternMatcherTest {
 
 
-
     @Test
     void testMilkPatterns() {
         assertEquals("Milk", PatternMatcher.findMatchingPattern("Milk"));

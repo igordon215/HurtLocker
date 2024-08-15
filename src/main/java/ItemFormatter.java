@@ -31,15 +31,6 @@ public class ItemFormatter {
     }
 
 
-
-
-
-
-
-
-
-
-
 //    public static void main(String[] args) {
 //        ItemFormatter formatter = new ItemFormatter();
 //
@@ -55,10 +46,6 @@ public class ItemFormatter {
 //        System.out.println("Formatted result:");
 //        System.out.println(formattedItem);
 //    }
-
-
-
-
 
 
 }
