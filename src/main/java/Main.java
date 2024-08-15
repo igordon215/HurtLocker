@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Main main = new Main();
         String rawData = main.readRawDataToString();
-        JerkSONParser parser = new JerkSONParser();
+        Parser parser = new Parser();
         String parsedOutput = parser.parse(rawData);
         System.out.println(parsedOutput);
         System.out.println("Total exceptions encountered: " + parser.getExceptionCount());

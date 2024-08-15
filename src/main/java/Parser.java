@@ -20,13 +20,13 @@
 
 import java.util.Map;
 
-public class JerkSONParser {
+public class Parser {
     private static final String ITEM_SEPARATOR = "##";
     private ItemParser itemParser;
     private ItemFormatter itemFormatter;
     private ExceptionCounter exceptionCounter;
 
-    public JerkSONParser() {
+    public Parser() {
         this.exceptionCounter = new ExceptionCounter();
         this.itemParser = new ItemParser(exceptionCounter);
         this.itemFormatter = new ItemFormatter();
