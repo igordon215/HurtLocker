@@ -5,11 +5,6 @@ import java.util.Map;
 
 public class ItemFormatter {
 
-    // public String formatItem(Map<String, String> item) {
-    //     return null;
-    // }
-
-    //README- CANT USE STRINGBUILDER....
        public String formatItem(Map<String, String> item) {
        StringBuilder formattedItem = new StringBuilder();
        List<String> keys = new ArrayList<>(item.keySet());
@@ -35,23 +30,5 @@ public class ItemFormatter {
        }
        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
    }
-
-
-//    public static void main(String[] args) {
-//        ItemFormatter formatter = new ItemFormatter();
-//
-//        Map<String, String> testItem = new HashMap<>();
-//        testItem.put("name", "MiLk");
-//        testItem.put("price", "3.23");
-//        testItem.put("type", "Food");
-//        testItem.put("expiration", "1/25/2016");
-//
-//        System.out.println("Testing ItemFormatter with: " + testItem);
-//
-//        String formattedItem = formatter.formatItem(testItem);
-//        System.out.println("Formatted result:");
-//        System.out.println(formattedItem);
-//    }
-
 
 }

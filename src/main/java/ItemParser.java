@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class ItemParser {
     private static final Pattern KEY_VALUE_PATTERN = Pattern.compile("(\\w+)[:@^*%!]([^;##]+)");
+    private static final Pattern TYPE_EXPIRATION_PATTERN = Pattern.compile("(\\w+)([:@^*%!])expiration[:@^*%!](\\d+/\\d+/\\d+)");
     private ExceptionCounter exceptionCounter;
 
     public ItemParser(ExceptionCounter exceptionCounter) {
@@ -15,41 +16,28 @@ public class ItemParser {
         Map<String, String> parsedItem = new HashMap<>();
         Matcher matcher = KEY_VALUE_PATTERN.matcher(item);
         while (matcher.find()) {
-            String key = matcher.group(1).trim();
+            String key = matcher.group(1).trim().toLowerCase();
             String value = matcher.group(2).trim();
-            if (key.equalsIgnoreCase("type") && value.contains("expiration")) {
-                String[] parts = value.split("[:@^*%!]");
-                parsedItem.put("type", parts[0].trim());
-                if (parts.length > 1) {
-                    parsedItem.put("expiration", parts[1].trim());
+
+            if (key.equals("type") && value.toLowerCase().contains("expiration")) {
+                Matcher typeExpMatcher = TYPE_EXPIRATION_PATTERN.matcher(key + ":" + value);
+                if (typeExpMatcher.find()) {
+                    parsedItem.put("type", typeExpMatcher.group(1).trim());
+                    parsedItem.put("expiration", typeExpMatcher.group(3).trim());
+                } else {
+                    exceptionCounter.incrementExceptionCount();
+                    parsedItem.put("type", "[No Value]");
+                    parsedItem.put("expiration", "[No Value]");
                 }
             } else {
                 if (value.isEmpty()) {
                     exceptionCounter.incrementExceptionCount();
                     value = "[No Value]";
                 }
-                parsedItem.put(key.toLowerCase(), value);
+                parsedItem.put(key, value);
             }
         }
         return parsedItem;
     }
-
-
-//    public static void main(String[] args) {
-//        ExceptionCounter counter = new ExceptionCounter();
-//        ItemParser parser = new ItemParser(counter);
-//
-//        String testItem = "naMe:MiLk;price:3.23;type:Food;expiration:1/25/2016";
-//        System.out.println("Testing ItemParser with: " + testItem);
-//
-//        Map<String, String> result = parser.parseItem(testItem);
-//        System.out.println("Parsed result:");
-//        for (Map.Entry<String, String> entry : result.entrySet()) {
-//            System.out.println(entry.getKey() + ": " + entry.getValue());
-//        }
-//
-//        System.out.println("Exception count: " + counter.getExceptionCount());
-//    }
-
 
 }
